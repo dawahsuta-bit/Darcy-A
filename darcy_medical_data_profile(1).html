@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Darcy Awah Achunguh | Medical-Themed Data Profile</title>
+  <meta name="description" content="Medical-themed interactive HTML profile for Darcy Awah Achunguh, focused on analytics, data engineering, business analysis, and data science." />
+  <style>
+    :root {
+      --bg: #eefcf9;
+      --bg-2: #f7fffd;
+      --panel: rgba(255, 255, 255, 0.86);
+      --panel-solid: #ffffff;
+      --text: #0d2630;
+      --muted: #5c7077;
+      --primary: #008f9c;
+      --primary-2: #00c2a8;
+      --accent: #2f80ed;
+      --danger: #e85d75;
+      --line: rgba(0, 143, 156, 0.18);
+      --shadow: 0 24px 70px rgba(6, 70, 75, 0.16);
+      --radius: 24px;
+    }
+
+    [data-theme="dark"] {
+      --bg: #07181d;
+      --bg-2: #0a232a;
+      --panel: rgba(9, 34, 41, 0.84);
+      --panel-solid: #0e2d35;
+      --text: #ecfffb;
+      --muted: #a4c5c4;
+      --primary: #00d5c6;
+      --primary-2: #1de9b6;
+      --accent: #7db5ff;
+      --danger: #ff6b8a;
+      --line: rgba(0, 213, 198, 0.2);
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(0, 194, 168, 0.18), transparent 30rem),
+        radial-gradient(circle at 80% 15%, rgba(47, 128, 237, 0.16), transparent 26rem),
+        linear-gradient(135deg, var(--bg), var(--bg-2));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .medical-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, black, transparent 75%);
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .orb {
+      position: fixed;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 194, 168, .22), transparent 68%);
+      filter: blur(10px);
+      z-index: -1;
+      animation: drift 14s ease-in-out infinite alternate;
+    }
+
+    .orb.two {
+      right: -120px;
+      bottom: 12%;
+      background: radial-gradient(circle, rgba(47, 128, 237, .18), transparent 68%);
+      animation-duration: 18s;
+    }
+
+    @keyframes drift {
+      0% { transform: translate(-40px, -20px) scale(1); }
+      100% { transform: translate(80px, 45px) scale(1.08); }
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: color-mix(in srgb, var(--bg-2) 78%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      box-shadow: 0 10px 25px rgba(0, 143, 156, .28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::before,
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      background: white;
+      border-radius: 2px;
+      opacity: .94;
+    }
+
+    .brand-mark::before { width: 22px; height: 6px; }
+    .brand-mark::after { width: 6px; height: 22px; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a,
+    .theme-toggle {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      padding: 10px 13px;
+      border-radius: 999px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: .25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .theme-toggle:hover {
+      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--primary) 45%, transparent);
+      box-shadow: 0 12px 22px rgba(0, 143, 156, .12);
+    }
+
+    .hero {
+      padding: 82px 0 52px;
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-card,
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-card {
+      padding: clamp(26px, 5vw, 54px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -12% -40% auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 194, 168, .22), transparent 70%);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--danger);
+      box-shadow: 0 0 0 0 rgba(232, 93, 117, .55);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(232, 93, 117, .55); }
+      70% { box-shadow: 0 0 0 15px rgba(232, 93, 117, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(232, 93, 117, 0); }
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: .95;
+      letter-spacing: -.06em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      font-size: clamp(17px, 2.2vw, 22px);
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 820px;
+      margin: 22px 0 0;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: 16px;
+      padding: 14px 18px;
+      font-weight: 750;
+      transition: .25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn.primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      box-shadow: 0 16px 32px rgba(0, 143, 156, .26);
+    }
+
+    .btn.secondary {
+      color: var(--text);
+      border-color: var(--line);
+      background: var(--panel-solid);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .vitals {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .vital-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vital-card strong {
+      display: block;
+      font-size: 28px;
+      letter-spacing: -.04em;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .vital-card span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .ecg-panel {
+      grid-column: 1 / -1;
+      min-height: 190px;
+      padding: 16px;
+    }
+
+    .ecg-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    svg.ecg {
+      width: 100%;
+      height: 112px;
+      overflow: visible;
+    }
+
+    .ecg-line {
+      fill: none;
+      stroke: var(--primary);
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 680;
+      stroke-dashoffset: 680;
+      filter: drop-shadow(0 0 9px color-mix(in srgb, var(--primary) 45%, transparent));
+      animation: draw 3.2s ease-in-out infinite;
+    }
+
+    @keyframes draw {
+      0% { stroke-dashoffset: 680; opacity: .25; }
+      45% { stroke-dashoffset: 0; opacity: 1; }
+      100% { stroke-dashoffset: -680; opacity: .25; }
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -.04em;
+    }
+
+    .section-title p {
+      max-width: 570px;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 18px;
+    }
+
+    .panel {
+      padding: 24px;
+    }
+
+    .panel h3 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      letter-spacing: -.02em;
+    }
+
+    .panel p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .contact-item {
+      border: 1px solid var(--line);
+      background: color-mix(in srgb, var(--panel-solid) 70%, transparent);
+      border-radius: 18px;
+      padding: 14px;
+    }
+
+    .contact-item small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .contact-item strong {
+      word-break: break-word;
+    }
+
+    .viz-card {
+      padding: 26px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 16px 0 22px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: var(--panel-solid);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: .2s ease;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .chip.active,
+    .chip:hover {
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      color: white;
+      border-color: transparent;
+      transform: translateY(-2px);
+    }
+
+    .skill-chart {
+      position: relative;
+      display: grid;
+      gap: 12px;
+    }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 150px 1fr 54px;
+      gap: 14px;
+      align-items: center;
+      padding: 10px;
+      border-radius: 16px;
+      transition: .2s ease;
+      cursor: help;
+    }
+
+    .skill-row:hover {
+      background: color-mix(in srgb, var(--primary) 8%, transparent);
+      transform: translateX(4px);
+    }
+
+    .bar-track {
+      height: 14px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--muted) 16%, transparent);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bar-fill {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--primary), var(--primary-2), var(--accent));
+      transition: width .9s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .tooltip {
+      position: fixed;
+      z-index: 100;
+      pointer-events: none;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: var(--panel-solid);
+      border: 1px solid var(--line);
+      color: var(--text);
+      box-shadow: 0 16px 40px rgba(0,0,0,.16);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity .15s ease, transform .15s ease;
+      max-width: 280px;
+      font-size: 14px;
+    }
+
+    .tooltip.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1fr .8fr;
+      gap: 18px;
+    }
+
+    .donut-wrap {
+      display: grid;
+      place-items: center;
+      min-height: 330px;
+      position: relative;
+    }
+
+    .donut {
+      width: min(300px, 100%);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: conic-gradient(var(--primary) 0 28%, var(--accent) 28% 52%, var(--primary-2) 52% 74%, var(--danger) 74% 88%, color-mix(in srgb, var(--muted) 40%, transparent) 88% 100%);
+      position: relative;
+      box-shadow: inset 0 0 45px rgba(255,255,255,.18), 0 20px 50px rgba(0,0,0,.12);
+      cursor: pointer;
+      transition: .3s ease;
+    }
+
+    .donut:hover {
+      transform: rotate(-6deg) scale(1.03);
+    }
+
+    .donut::after {
+      content: "Clinical\A Data\A Pulse";
+      white-space: pre;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 900;
+      line-height: 1.15;
+      position: absolute;
+      inset: 22%;
+      background: var(--panel-solid);
+      border-radius: 50%;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+      width: 100%;
+    }
+
+    .legend-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px;
+      background: color-mix(in srgb, var(--panel-solid) 72%, transparent);
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 14px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 8px;
+      bottom: 8px;
+      width: 3px;
+      background: linear-gradient(var(--primary), var(--primary-2));
+      border-radius: 999px;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-left: 46px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 18px 18px 18px 20px;
+      cursor: pointer;
+      transition: .24s ease;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -38px;
+      top: 22px;
+      width: 16px;
+      height: 16px;
+      background: var(--panel-solid);
+      border: 4px solid var(--primary);
+      border-radius: 50%;
+      box-shadow: 0 0 0 8px color-mix(in srgb, var(--primary) 10%, transparent);
+    }
+
+    .timeline-item:hover,
+    .timeline-item.active {
+      transform: translateY(-3px);
+      border-color: color-mix(in srgb, var(--primary) 46%, transparent);
+    }
+
+    .timeline-item h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .timeline-item small {
+      color: var(--muted);
+      display: block;
+      margin-top: 4px;
+    }
+
+    .timeline-details {
+      display: none;
+      margin: 14px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-left: 18px;
+    }
+
+    .timeline-item.active .timeline-details {
+      display: block;
+    }
+
+    .timeline-details li {
+      margin: 8px 0;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      transition: .25s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .badge {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: var(--primary);
+      background: color-mix(in srgb, var(--primary) 10%, transparent);
+      border: 1px solid var(--line);
+      font-weight: 800;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    .project-card h3 {
+      margin: 14px 0 8px;
+      font-size: 22px;
+    }
+
+    .meter {
+      height: 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--muted) 16%, transparent);
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .meter span {
+      display: block;
+      height: 100%;
+      width: var(--w);
+      background: linear-gradient(90deg, var(--primary), var(--primary-2));
+      border-radius: inherit;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .edu-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 20px;
+      background: var(--panel);
+    }
+
+    .edu-card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .edu-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    footer {
+      padding: 40px 0 70px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 950px) {
+      .hero,
+      .summary-grid,
+      .chart-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .education-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        gap: 6px;
+      }
+
+      .nav-links a {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .vitals {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        display: block;
+      }
+
+      .section-title p {
+        margin-top: 10px;
+      }
+
+      .skill-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .bar-track {
+        height: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="medical-grid"></div>
+  <div class="orb"></div>
+  <div class="orb two"></div>
+
+  <header>
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Home">
+        <span class="brand-mark"></span>
+        <span>Darcy Awah</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#summary">Summary</a>
+        <a href="#visuals">Visuals</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <button class="theme-toggle" id="themeToggle" type="button">🌙 Dark mode</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="container hero">
+      <div class="hero-card reveal">
+        <div class="eyebrow"><span class="pulse-dot"></span> Medical-themed analytics portfolio</div>
+        <h1>Darcy Awah Achunguh<br><span class="gradient-text">Data + Decisions</span></h1>
+        <p class="subtitle">Business Analyst | Data Analyst | Data Engineer | Data Scientist focused on business intelligence, machine learning, data pipelines, and stakeholder-ready insights.</p>
+        <div class="cta-row">
+          <a class="btn primary" href="mailto:awahdarcy@gmail.com">Contact Me</a>
+          <a class="btn secondary" href="#visuals">View Interactive Visuals</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/darcy-awah-achunguh-85a83331b/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+
+      <div class="vitals reveal" aria-label="Professional vitals">
+        <div class="vital-card">
+          <strong>4</strong>
+          <span>Specialized tracks: Business Analysis, Data Analysis, Data Engineering, and Data Science</span>
+        </div>
+        <div class="vital-card">
+          <strong>11+</strong>
+          <span>Core technical skills across programming, analytics, cloud, visualization, and big data</span>
+        </div>
+        <div class="vital-card">
+          <strong>4</strong>
+          <span>Portfolio projects covering classification, regression, dashboards, and HR analytics</span>
+        </div>
+        <div class="vital-card">
+          <strong>2026</strong>
+          <span>Advanced Diploma in Data Science and Applications completion timeline</span>
+        </div>
+        <div class="vital-card ecg-panel">
+          <div class="ecg-title">
+            <span>Insight pulse monitor</span>
+            <strong style="font-size: 16px;">Live</strong>
+          </div>
+          <svg class="ecg" viewBox="0 0 620 120" role="img" aria-label="Animated ECG line">
+            <path class="ecg-line" d="M0 68 H70 L88 68 L104 36 L128 94 L154 68 H235 L255 68 L275 48 L298 86 L318 68 H404 L426 68 L448 22 L474 102 L502 68 H620" />
+          </svg>
+          <span style="color: var(--muted); font-size: 14px;">Theme: clean healthcare visuals, analytical precision, and interactive data storytelling.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="summary">
+      <div class="section-title reveal">
+        <h2>Professional Summary</h2>
+        <p>Built from the uploaded resume and converted into a modern one-page web profile.</p>
+      </div>
+      <div class="summary-grid">
+        <article class="panel reveal">
+          <h3>Profile Snapshot</h3>
+          <p>Results-driven Business Analyst with a strong background in transforming business challenges into data-driven solutions. Experienced in eliciting and analyzing business requirements, collaborating with stakeholders, and translating business needs into functional and technical specifications. Skilled at improving processes, building dashboards, analyzing data, and delivering actionable insights using SQL, Python, Excel, Power BI, Tableau, PostgreSQL, and Azure Machine Learning.</p>
+        </article>
+        <aside class="panel reveal">
+          <h3>Contact Information</h3>
+          <div class="contact-grid">
+            <a class="contact-item" href="mailto:awahdarcy@gmail.com">
+              <small>Email</small>
+              <strong>awahdarcy@gmail.com</strong>
+            </a>
+            <a class="contact-item" href="tel:+16478083391">
+              <small>Phone</small>
+              <strong>647-808-3391</strong>
+            </a>
+            <div class="contact-item">
+              <small>Location</small>
+              <strong>Essex, ON</strong>
+            </div>
+            <a class="contact-item" href="https://www.linkedin.com/in/darcy-awah-achunguh-85a83331b/" target="_blank" rel="noreferrer">
+              <small>LinkedIn</small>
+              <strong>Open profile</strong>
+            </a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="container" id="visuals">
+      <div class="section-title reveal">
+        <h2>Interactive Visualizations</h2>
+        <p>Filter skills, hover over the bars, and explore the healthcare-inspired data dashboard.</p>
+      </div>
+      <div class="chart-grid">
+        <article class="panel viz-card reveal">
+          <h3>Technical Skill Diagnostics</h3>
+          <div class="toolbar" id="skillFilters" aria-label="Skill filters"></div>
+          <div class="skill-chart" id="skillChart" aria-label="Interactive skill chart"></div>
+        </article>
+
+        <article class="panel viz-card reveal">
+          <h3>Capability Mix</h3>
+          <p style="margin-top: 0;">Click the pulse chart to rotate the visual focus. The profile combines analytics, engineering, BI, and ML capabilities.</p>
+          <div class="donut-wrap">
+            <div class="donut" id="donut" title="Click to rotate focus areas"></div>
+            <div class="legend" id="legend"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="container" id="experience">
+      <div class="section-title reveal">
+        <h2>Experience Timeline</h2>
+        <p>Click each role to expand its main responsibilities and impact areas.</p>
+      </div>
+      <div class="panel reveal">
+        <h3>USAA Federal Savings Bank <span style="color: var(--muted); font-weight: 600;">| San Antonio, TX | Jan 2024 – Jul 2025</span></h3>
+        <div class="timeline" id="timeline"></div>
+      </div>
+    </section>
+
+    <section class="container" id="projects">
+      <div class="section-title reveal">
+        <h2>Portfolio Projects</h2>
+        <p>Interactive cards showing project type, tools, and analytical focus.</p>
+      </div>
+      <div class="toolbar reveal" id="projectFilters" aria-label="Project filters"></div>
+      <div class="projects-grid" id="projectGrid"></div>
+    </section>
+
+    <section class="container" id="education">
+      <div class="section-title reveal">
+        <h2>Education</h2>
+        <p>Academic background that supports the analytics, business, and data science profile.</p>
+      </div>
+      <div class="education-grid">
+        
+        <article class="edu-card reveal">
+          <h3>Metro College of Technology</h3>
+          <p><strong>Advanced Diploma in Data Science and Applications</strong><br>Nov 2025 – Jul 2026</p>
+        </article>
+        <article class="edu-card reveal">
+          <h3>Siam University, Bangkok, Thailand</h3>
+          <p><strong>Master of Business Administration</strong><br>Aug 2017 – Jun 2019</p>
+        </article>
+        <article class="edu-card reveal">
+          <h3>University of Buea, Buea, Cameroon</h3>
+          <p><strong>Bachelor’s Degree in Economics</strong><br>Oct 2009 – Jun 2012</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <p>© <span id="year"></span> Darcy Awah Achunguh. Medical-themed HTML profile with interactive visualizations.</p>
+  </footer>
+
+  <div class="tooltip" id="tooltip" role="status"></div>
+
+  <script>
+    const PROFILE = {
+  "name": "Darcy Awah Achunguh",
+  "title": "Business Analyst | Data Analyst | Data Engineer | Data Scientist",
+  "location": "Essex, ON",
+  "phone": "647-808-3391",
+  "email": "awahdarcy@gmail.com",
+  "linkedin": "https://www.linkedin.com/in/darcy-awah-achunguh-85a83331b/",
+  "github": "https://www.linkedin.com/in/darcy-awah-achunguh-85a83331b/",
+  "summary": "Results-driven Business Analyst with a strong background in transforming business challenges into data-driven solutions. Experienced in eliciting and analyzing business requirements, collaborating with stakeholders, and translating business needs into functional and technical specifications. Skilled at improving processes, building dashboards, analyzing data, and delivering actionable insights using SQL, Python, Excel, Power BI, Tableau, PostgreSQL, and Azure Machine Learning.",
+  "experience": {
+    "company": "USAA Federal Savings Bank",
+    "location": "San Antonio, TX",
+    "dates": "Jan 2024 – Jul 2025",
+    "roles": [
+      {
+        "role": "Data Engineer",
+        "bullets": [
+          "Designed, developed, and maintained scalable ETL/ELT data pipelines to ingest, transform, and integrate data from multiple sources.",
+          "Built and optimized data warehouse solutions and SQL databases by developing efficient data models, tuning queries, and improving analytics performance.",
+          "Automated data workflows using Python and SQL with monitoring, validation, and error-handling processes.",
+          "Collaborated with Data Science, Product, and Engineering teams to deliver trusted datasets and scalable data platforms."
+        ]
+      },
+      {
+        "role": "Data Analyst",
+        "bullets": [
+          "Collected, cleaned, transformed, and analyzed large datasets using SQL, Python, and Excel to identify trends and support decision-making.",
+          "Developed interactive dashboards and automated reports using Power BI and Tableau to monitor KPIs and business metrics.",
+          "Performed statistical analysis and exploratory data analysis to uncover insights and recommend process improvements.",
+          "Collaborated with stakeholders to gather reporting requirements, validate data accuracy, and communicate analytical findings."
+        ]
+      },
+      {
+        "role": "Business Analyst",
+        "bullets": [
+          "Gathered, analyzed, and documented business requirements by collaborating with stakeholders.",
+          "Analyzed business processes and operational data to identify inefficiencies and recommend improvements.",
+          "Developed reports, dashboards, and performance metrics using SQL, Excel, Power BI, and Tableau.",
+          "Worked with Product, IT, Engineering, and QA teams to support project delivery and user acceptance testing."
+        ]
+      },
+      {
+        "role": "Data Scientist",
+        "bullets": [
+          "Developed machine learning models using Python and statistical techniques to solve business problems.",
+          "Cleaned and analyzed complex datasets, performed feature engineering, and generated actionable insights.",
+          "Evaluated experiments using cross-validation, hyperparameter tuning, F1 Score, ROC-AUC, Precision, Recall, RMSE, and R².",
+          "Communicated findings through dashboards and visualizations and supported model deployment and monitoring."
+        ]
+      }
+    ]
+  },
+  "education": [
+    {
+      "school": "Metro College of Technology",
+      "degree": "Advanced Diploma in Data Science and Applications",
+      "dates": "Nov 2025 – Jul 2026"
+    },
+    {
+      "school": "Siam University, Bangkok, Thailand",
+      "degree": "Master of Business Administration",
+      "dates": "Aug 2017 – Jun 2019"
+    },
+    {
+      "school": "University of Buea, Buea, Cameroon",
+      "degree": "Bachelor’s Degree in Economics",
+      "dates": "Oct 2009 – Jun 2012"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Bank Marketing Classification Project",
+      "type": "Classification",
+      "tools": "Python, Pandas, Scikit-learn, XGBoost, LightGBM, SHAP",
+      "impact": "Predicted customer deposit subscription and explained key prediction factors using model interpretability.",
+      "score": 92
+    },
+    {
+      "name": "House Price Prediction Regression Project",
+      "type": "Regression",
+      "tools": "Python, Pandas, Scikit-learn, Random Forest, XGBoost, LightGBM",
+      "impact": "Predicted house prices through cleaning, feature engineering, model comparison, and regression metrics.",
+      "score": 88
+    },
+    {
+      "name": "Customer Retention Dashboard Project",
+      "type": "Business Intelligence",
+      "tools": "SQL, Power BI, Excel, DAX",
+      "impact": "Created an interactive dashboard to track retention, revenue trends, KPIs, slicers, and summary reports.",
+      "score": 90
+    },
+    {
+      "name": "Employee Attrition Prediction Project",
+      "type": "Classification",
+      "tools": "Python, Pandas, Scikit-learn, Power BI",
+      "impact": "Predicted employees at risk of leaving and created HR decision-support insights.",
+      "score": 86
+    }
+  ],
+  "skills": [
+    {
+      "name": "SQL",
+      "category": "Data",
+      "level": 95,
+      "detail": "Querying, cleaning, transformations, data validation, PostgreSQL"
+    },
+    {
+      "name": "Python",
+      "category": "Programming",
+      "level": 92,
+      "detail": "Pandas, NumPy, automation, ML workflows"
+    },
+    {
+      "name": "Power BI",
+      "category": "Visualization",
+      "level": 90,
+      "detail": "Dashboards, KPIs, DAX, business reporting"
+    },
+    {
+      "name": "Tableau",
+      "category": "Visualization",
+      "level": 84,
+      "detail": "Interactive dashboards and visual storytelling"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Data",
+      "level": 88,
+      "detail": "Database querying, tuning, analytics support"
+    },
+    {
+      "name": "Machine Learning",
+      "category": "ML",
+      "level": 88,
+      "detail": "Scikit-learn, XGBoost, LightGBM, TensorFlow, Keras"
+    },
+    {
+      "name": "Data Engineering",
+      "category": "Engineering",
+      "level": 87,
+      "detail": "ETL/ELT, data pipelines, data warehouse concepts"
+    },
+    {
+      "name": "Statistics",
+      "category": "Analytics",
+      "level": 86,
+      "detail": "Hypothesis testing, EDA, feature evaluation"
+    },
+    {
+      "name": "Big Data",
+      "category": "Engineering",
+      "level": 82,
+      "detail": "Kafka, Hadoop, Spark, Hive, PySpark, Spark SQL"
+    },
+    {
+      "name": "Azure ML",
+      "category": "Cloud",
+      "level": 80,
+      "detail": "Azure Machine Learning, Databricks, ML workflows"
+    },
+    {
+      "name": "Git / Docker / Linux",
+      "category": "Tools",
+      "level": 78,
+      "detail": "Version control, containers, Linux environment"
+    }
+  ]
+};
+
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => Array.from(document.querySelectorAll(selector));
+
+    const tooltip = $("#tooltip");
+    const themeToggle = $("#themeToggle");
+
+    function setTheme(theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      localStorage.setItem("profile-theme", theme);
+      themeToggle.textContent = theme === "dark" ? "☀️ Light mode" : "🌙 Dark mode";
+    }
+
+    setTheme(localStorage.getItem("profile-theme") || "light");
+
+    themeToggle.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      setTheme(current === "dark" ? "light" : "dark");
+    });
+
+    $("#year").textContent = new Date().getFullYear();
+
+    const categories = ["All", ...new Set(PROFILE.skills.map(skill => skill.category))];
+    let activeSkillCategory = "All";
+
+    function renderSkillFilters() {
+      const target = $("#skillFilters");
+      target.innerHTML = categories.map(cat => `<button class="chip ${cat === activeSkillCategory ? "active" : ""}" type="button" data-category="${cat}">${cat}</button>`).join("");
+      target.querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", () => {
+          activeSkillCategory = button.dataset.category;
+          renderSkillFilters();
+          renderSkillChart();
+        });
+      });
+    }
+
+    function renderSkillChart() {
+      const chart = $("#skillChart");
+      const skills = PROFILE.skills
+        .filter(skill => activeSkillCategory === "All" || skill.category === activeSkillCategory)
+        .sort((a, b) => b.level - a.level);
+
+      chart.innerHTML = skills.map(skill => `
+        <div class="skill-row" data-detail="${skill.detail}" data-skill="${skill.name}" data-level="${skill.level}">
+          <strong>${skill.name}</strong>
+          <div class="bar-track" aria-hidden="true"><div class="bar-fill" style="width: ${skill.level}%"></div></div>
+          <span>${skill.level}%</span>
+        </div>
+      `).join("");
+
+      chart.querySelectorAll(".skill-row").forEach(row => {
+        row.addEventListener("mousemove", (event) => {
+          tooltip.innerHTML = `<strong>${row.dataset.skill} • ${row.dataset.level}%</strong><br>${row.dataset.detail}`;
+          tooltip.style.left = `${event.clientX + 16}px`;
+          tooltip.style.top = `${event.clientY + 16}px`;
+          tooltip.classList.add("visible");
+        });
+        row.addEventListener("mouseleave", () => tooltip.classList.remove("visible"));
+      });
+    }
+
+    const mix = [
+      ["Analytics", 28],
+      ["Data Engineering", 24],
+      ["Machine Learning", 22],
+      ["Business Intelligence", 14],
+      ["Cloud & Tools", 12]
+    ];
+
+    function renderLegend() {
+      $("#legend").innerHTML = mix.map(([name, value]) => `
+        <div class="legend-item"><span>${name}</span><strong>${value}%</strong></div>
+      `).join("");
+    }
+
+    let rotation = 0;
+    $("#donut").addEventListener("click", () => {
+      rotation += 72;
+      $("#donut").style.transform = `rotate(${rotation}deg) scale(1.03)`;
+    });
+
+    function renderTimeline() {
+      $("#timeline").innerHTML = PROFILE.experience.roles.map((role, index) => `
+        <article class="timeline-item ${index === 0 ? "active" : ""}" tabindex="0">
+          <h3>${role.role}</h3>
+          <small>${PROFILE.experience.company}</small>
+          <ul class="timeline-details">
+            ${role.bullets.map(item => `<li>${item}</li>`).join("")}
+          </ul>
+        </article>
+      `).join("");
+
+      $("#timeline").querySelectorAll(".timeline-item").forEach(item => {
+        const toggle = () => {
+          item.classList.toggle("active");
+        };
+        item.addEventListener("click", toggle);
+        item.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggle();
+          }
+        });
+      });
+    }
+
+    let activeProjectType = "All";
+    function getProjectTypes() {
+      return ["All", ...new Set(PROFILE.projects.map(project => project.type))];
+    }
+
+    function renderProjectFilters() {
+      $("#projectFilters").innerHTML = getProjectTypes().map(type => `
+        <button class="chip ${type === activeProjectType ? "active" : ""}" type="button" data-type="${type}">${type}</button>
+      `).join("");
+
+      $("#projectFilters").querySelectorAll("button").forEach(button => {
+        button.addEventListener("click", () => {
+          activeProjectType = button.dataset.type;
+          renderProjectFilters();
+          renderProjects();
+        });
+      });
+    }
+
+    function renderProjects() {
+      const filtered = PROFILE.projects.filter(project => activeProjectType === "All" || project.type === activeProjectType);
+      $("#projectGrid").innerHTML = filtered.map(project => `
+        <article class="panel project-card reveal visible">
+          <span class="badge">${project.type}</span>
+          <h3>${project.name}</h3>
+          <p><strong>Tools:</strong> ${project.tools}</p>
+          <p>${project.impact}</p>
+          <div class="meter" aria-label="Project strength score"><span style="--w: ${project.score}%"></span></div>
+        </article>
+      `).join("");
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    function initReveal() {
+      $$(".reveal").forEach(element => observer.observe(element));
+    }
+
+    renderSkillFilters();
+    renderSkillChart();
+    renderLegend();
+    renderTimeline();
+    renderProjectFilters();
+    renderProjects();
+    initReveal();
+  </script>
+</body>
+</html>
